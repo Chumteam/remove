@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Spaces</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f7b42c, #fc575e);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            flex-direction: column;
+        }
+
+        .container {
+            background: #fff;
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fc575e;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            resize: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea:focus {
+            border-color: #fc575e;
+        }
+
+        button {
+            background: #fc575e;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #f7b42c;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .result h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .result pre {
+            font-family: monospace;
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            color: #333;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Remove Spaces</h1>
+        
+        <textarea id="numberInput" placeholder="Input number here"></textarea>
+        <button onclick="removeSpaces()">Remove Spaces</button>
+        
+        <div class="result">
+            <h2>Result:</h2>
+            <pre id="outputResult">Nothing yet...</pre>
+        </div>
+    </div>
+
+    <script>
+        function removeSpaces() {
+            const input = document.getElementById('numberInput').value.trim();
+
+            if (!input) {
+                document.getElementById('outputResult').innerText = "Please enter some numbers.";
+                return;
+            }
+
+            // Split input into lines, remove spaces, and join again
+            const cleanedNumbers = input
+                .split('\n') // Split into lines
+                .map(line => line.replace(/\s+/g, '')) // Remove spaces in each line
+                .filter(line => line.length > 0); // Remove empty lines
+
+            // Display cleaned numbers
+            if (cleanedNumbers.length > 0) {
+                document.getElementById('outputResult').innerText = cleanedNumbers.join('\n');
+            } else {
+                document.getElementById('outputResult').innerText = "No valid input found.";
+            }
+        }
+    </script>
+</body>
+</html>
